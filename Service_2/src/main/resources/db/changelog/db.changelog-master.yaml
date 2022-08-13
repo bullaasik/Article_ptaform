@@ -1,0 +1,113 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Roman_Orlov
+      changes:
+        - createTable:
+            tableName: pair_titles
+            columns:
+              - column:
+                  name: title
+                  type: varchar(6)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pair_titles_pk
+                    nullable: false
+
+        - createTable:
+            tableName: trade
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: trade_pk
+                    nullable: false
+              - column:
+                  name: pair_title
+                  type: varchar(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date_time
+                  type: timestamp
+                  constraints:
+                    nullable: false
+
+        - insert:
+            tableName: pair_titles
+            columns:
+              - column:
+                  name: title
+                  value: EURUSD
+        - insert:
+            tableName: pair_titles
+            columns:
+              - column:
+                  name: title
+                  value: GBPUSD
+        - insert:
+            tableName: pair_titles
+            columns:
+              - column:
+                  name: title
+                  value: USDJPY
+        - insert:
+            tableName: pair_titles
+            columns:
+              - column:
+                  name: title
+                  value: USDCHF
+
+        - addForeignKeyConstraint:
+            baseTableName: trade
+            baseColumnNames: pair_title
+            referencedTableName: pair_titles
+            referencedColumnNames: title
+            constraintName: pair_titles_trade_fk
+
+  - changeSet:
+      id: 2
+      author: Roman_Orlov
+      changes:
+        - addColumn:
+            tableName: pair_titles
+            columns:
+              - column:
+                  name: pair_info
+                  type: varchar(50)
+
+        - update:
+            columns:
+              - column:
+                  name: pair_info
+                  value: euro/united states dollar
+            tableName: pair_titles
+            where: title='EURUSD'
+        - update:
+            columns:
+              - column:
+                  name: pair_info
+                  value: great britain pound/united states dollar
+            tableName: pair_titles
+            where: title='GBPUSD'
+        - update:
+            columns:
+              - column:
+                  name: pair_info
+                  value: united states dollar/japanese yen
+            tableName: pair_titles
+            where: title='USDJPY'
+        - update:
+            columns:
+              - column:
+                  name: pair_info
+                  value: united states dollar/swiss franc
+            tableName: pair_titles
+            where: title='USDCHF'

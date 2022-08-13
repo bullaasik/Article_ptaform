@@ -1,0 +1,8 @@
+---
+currency pairs:
+  - USD/RUB: 60,585 * 0.2 * const
+  - EUR/RUB: 62,524 * 0.2 * const
+  - EUR/USD: 1,033 * 0.2 * const
+  - USD/JPY: 132,562 * 0.2 * const
+  - EUR/JPY: 136,982 * 0.2 * const
+const: 1,2

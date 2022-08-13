@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: data collection module
+  datasource:
+    url: jdbc:postgresql://localhost:5432/datasource
+    username: postgres
+    password: 1
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+
+server:
+  port: 8082
+
+info:
+  name: "data collection module"
+  description: "Spring boot application for collecting data on currency pairs"
+  author: "Roman Orlov"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+  endpoint:
+    liquibase:
+      enabled: true
+
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 1500
+      generator-client:
+        url: http://localhost:8081
+

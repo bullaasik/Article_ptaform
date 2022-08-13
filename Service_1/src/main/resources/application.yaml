@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: Genertor
+    CurrencyPairs:
+      - USD/RUB: 60.4523 * resultTimeFunction + RandomValue
+      - EUR/RUB: 62.7395 * resultTimeFunction + RandomValue
+      - EUR/USD: 1.0582 * resultTimeFunction + RandomValue
+
+server:
+  port: 8081
+
+info:
+  name: "Service 1 - Generator"
+  description: "Service for generating a flow of prices for transactions of currency pairs based on a given trend"
+  author: "Julia Bednova"
